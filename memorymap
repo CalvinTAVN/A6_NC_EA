@@ -92,15 +92,19 @@ Calvin and Alex
    
    printf("%c is your grade.\n", grade); 
    0x400864 <main+68>:  adrp    x0, 0x400000
-   0x400868 <main+72>:  add     x0, x0, #0x960
-   0x40086c <main+76>:  adrp    x1, 0x420000
-   0x400870 <main+80>:  ldrb    w1, [x1,#68]
+   0x400868 <main+72>:  add     x0, x0, #0x960 //"%c is your grade.\n"
+   0x40086c <main+76>:  adrp    x1, 0x420000 
+   0x400870 <main+80>:  ldrb    w1, [x1,#68] //load your grade into w1
    0x400874 <main+84>:  bl      0x400600 <printf@plt>
+   
+   printf("Thank you, %s.\n", name);
    0x400878 <main+88>:  adrp    x0, 0x400000
-   0x40087c <main+92>:  add     x0, x0, #0x978
+   0x40087c <main+92>:  add     x0, x0, #0x978 "Thank you, %s.\n"
    0x400880 <main+96>:  adrp    x1, 0x420000
-   0x400884 <main+100>: add     x1, x1, #0x58
+   0x400884 <main+100>: add     x1, x1, #0x58 //address of name array
    0x400888 <main+104>: bl      0x400600 <printf@plt>
+   
+   //Epilog and return
    0x40088c <main+108>: mov     w0, #0x0                        // #0
    0x400890 <main+112>: ldp     x19, x30, [sp]
    0x400894 <main+116>: add     sp, sp, #0x10
