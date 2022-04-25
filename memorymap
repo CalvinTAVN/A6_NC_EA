@@ -1,8 +1,12 @@
-Calvin
+Calvin and Alex
 
+
+   Prolog
    0x400780 <readString>:       sub     sp, sp, #0x50
    0x400784 <readString+4>:     stp     x19, x20, [sp]
    0x400788 <readString+8>:     stp     x21, x30, [sp,#16]
+
+   First  loop setup
    0x40078c <readString+12>:    mov     x19, #0x0                       // #0
    0x400790 <readString+16>:    adrp    x21, 0x420000
    0x400794 <readString+20>:    mov     w20, w19
