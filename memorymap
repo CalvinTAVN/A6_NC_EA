@@ -110,3 +110,10 @@ Calvin and Alex
    0x400894 <main+116>: add     sp, sp, #0x10
    0x400898 <main+120>: ret
 
+
+//Step 2.2 Table of Data Section
+Address(In HEX) |  Content (in HEX)  | Description
+0x420044        | 0x00000044         | This is the grade, which is defaulted to D which in hexadecimal is 44.
+
+ 
+
