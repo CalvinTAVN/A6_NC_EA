@@ -104,7 +104,7 @@ Calvin and Alex
    0x400884 <main+100>: add     x1, x1, #0x58 //address of name array
    0x400888 <main+104>: bl      0x400600 <printf@plt>
    
-   //Epilog and return
+   //Epilog and return 0
    0x40088c <main+108>: mov     w0, #0x0                        // #0
    0x400890 <main+112>: ldp     x19, x30, [sp]
    0x400894 <main+116>: add     sp, sp, #0x10
