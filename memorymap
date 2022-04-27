@@ -130,6 +130,7 @@ ox420060        | a
 //Step 2.4 Table of the Stack Section
 
 Offset          | Description
+readString
 0               | x19
 8               | x20
 16              | x21
@@ -140,6 +141,15 @@ Offset          | Description
 56              | buf
 64              | buf
 72              | buf
+
+getName
+80              | x30
+88              | unused
+
+main
+96             | x19
+104            | x30
+
 
 
 
