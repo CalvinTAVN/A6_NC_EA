@@ -126,6 +126,17 @@ ox420060        | a
 0x420080        | n
 0x420088        | \0
 
+0x420058        | C
+ox420059        | a
+0x42005A        | l
+0x42005B        | v
+0x42005C        | i
+0x42005D        | n
+0x42005E        | \0
+
+
+
+
 
 //Step 2.4 Table of the Stack Section
 
