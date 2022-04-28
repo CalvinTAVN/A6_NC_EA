@@ -20,6 +20,47 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
                      unsigned int uiNumBits)
 {
    /* Your code here */
+   int i;
+   unsigned int src;
+   unsigned SrcStartBit;
+   unsigned int *dest;
+   unsigned int DestStartBit;
+   unsigned int NumBits;
+
+   /*assert(uiSrc != NULL);
+   assert(uiSrcStartBit != NULL);
+   assert(puiDest != NULL);
+   assert(uiDestStartBit != NULL);
+   assert(uiNumBits != NULL);*/
+   
+   src = uiSrc;
+   src = src  >> uiSrcStartBit;
+   src = src << (32 - uiNumBits);
+   src = src>> (32 - uiNumBits);
+   src = src << uiDestStartBit;
+   *puiDest = (*puiDest | src);
+   
+   /*
+   dest = puiDest;
+   *dest >> DestStartBit;
+   for (i = 0; i < uiNumBits; i++)
+   {
+      src = uiSrc;
+      SrcStartBit = uiSrcStartBit;
+      DestStartBit = uiDestStartBit;
+      NumBits = uiNumBits;
+
+      src >> SrcStartBit;
+      src >> i;
+
+      dest >> DestStartBit;     
+      *dest >> i;
+
+      if (src == 1)
+         *dest += src;
+      
+   }
+   */
 
 }
 
@@ -28,7 +69,18 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
 unsigned int MiniAssembler_mov(unsigned int uiReg, int iImmed)
 {
    /* Your code here */
+   unsigned int uiInstr;
 
+   /* Base Instruction Code */
+   uiInstr = 0x52800000;
+
+   /* Register to be inserted in instruction */
+   setField(uiReg, 0, &uiInstr, 0, 5);
+
+   /* Placing uiReg, number inserted in Instruction*/
+   setField(iImmed, 0, &uiInstr, 5, 16);
+
+   return uiInstr;
 }
 
 /*--------------------------------------------------------------------*/
@@ -60,6 +112,7 @@ unsigned int MiniAssembler_strb(unsigned int uiFromReg,
    unsigned int uiToReg)
 {
    /* Your code here */
+   
 
 }
 
