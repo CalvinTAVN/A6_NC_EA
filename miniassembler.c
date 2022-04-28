@@ -27,6 +27,7 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
    unsigned int DestStartBit;
    unsigned int NumBits;
 
+   assert (puiDest != NULL);
    /*assert(uiSrc != NULL);
    assert(uiSrcStartBit != NULL);
    assert(puiDest != NULL);
