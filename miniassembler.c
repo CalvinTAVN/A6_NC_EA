@@ -20,12 +20,7 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
                      unsigned int uiNumBits)
 {
    /* Your code here */
-   int i;
    unsigned int src;
-   unsigned SrcStartBit;
-   unsigned int *dest;
-   unsigned int DestStartBit;
-   unsigned int NumBits;
 
    assert (puiDest != NULL);
    /*assert(uiSrc != NULL);
@@ -41,27 +36,7 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
    src = src << uiDestStartBit;
    *puiDest = (*puiDest | src);
    
-   /*
-   dest = puiDest;
-   *dest >> DestStartBit;
-   for (i = 0; i < uiNumBits; i++)
-   {
-      src = uiSrc;
-      SrcStartBit = uiSrcStartBit;
-      DestStartBit = uiDestStartBit;
-      NumBits = uiNumBits;
-
-      src >> SrcStartBit;
-      src >> i;
-
-      dest >> DestStartBit;     
-      *dest >> i;
-
-      if (src == 1)
-         *dest += src;
-      
-   }
-   */
+   
 
 }
 
