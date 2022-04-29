@@ -88,7 +88,18 @@ unsigned int MiniAssembler_strb(unsigned int uiFromReg,
    unsigned int uiToReg)
 {
    /* Your code here */
+   unsigned int uiInstr;
    
+   /* Base Instruction Code*/
+   uiInstr = 0x39000000;
+
+   /*transferring from register uiFromReg to  Rt in uiInstr.*/
+   setField(uiFromReg, 0, &uiInstr, 0, 5);
+
+   /* Transferring from r*/
+   setField(uiToReg, 0, &uiInstr, 5, 5);
+
+   return uiInstr;
 
 }
 
@@ -98,5 +109,21 @@ unsigned int MiniAssembler_b(unsigned long ulAddr,
    unsigned long ulAddrOfThisInstr)
 {
    /* Your code here */
+   unsigned int uiInstr;
+   signed int cutAddress;
 
+   /* Base Instruction Code*/
+   uiInstr = 0x14000000;
+
+   /* Must cut the address to fit into instruction*/
+   cutAddress = (signed int)(ulAddr - ulAddrOfThisInstr);
+
+   /* If the label is encoded as imm26 times 4,
+      then imm26 is cutAddress divided by 4*/
+   cutAddress /= 4;
+   
+   /* Transferring cut address*/
+   setField(cutAddress, 0, &uiInstr, 0, 26);
+
+   return uiInstr;
 }
