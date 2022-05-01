@@ -9,9 +9,9 @@
 #include <ctype.h>
 
 
-/*Main function creates a file called dataB or overwrites
-  dataB if it already exists. outputs a new file called 
-  dataB that contains our name, null chars, and an address */
+/*Main function creates a file called dataA or overwrites
+  dataA if it already exists. outputs a new file called 
+  dataA that contains our name, null chars, and an address */
 int main(void)
 {
 
