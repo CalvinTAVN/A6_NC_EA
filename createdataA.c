@@ -24,24 +24,46 @@ int main(void)
    /*address of "grade = B"*/
    unsigned long address;
 
+   unsigned int instructions;
+   
    /*assigning values*/
    psFile = fopen("dataA", "w");
-   address = 0x0000000000400858;
-   
+   address = 0x0000000000420060;
+ 
    /*writing our name into the file */
-   /*writes 6 bytes*/
-   fprintf(psFile, "%c", 'C');
-   fprintf(psFile, "%c", 'a');
-   fprintf(psFile, "%c", 'l');
-   fprintf(psFile, "%c", 'v');
-   fprintf(psFile, "%c", 'i');
-   fprintf(psFile, "%c", 'n');
+   /* Write total of 48 bytes*/
+   /*writes 7 bytes*/
+   fprintf(psFile, "%c", 'C'); /* offset 32*/
+   fprintf(psFile, "%c", 'a'); /* 33  */
+   fprintf(psFile, "%c", 'l'); /* 34*/
+   fprintf(psFile, "%c", 'v'); /* 35*/
+   fprintf(psFile, "%c", 'i'); /* *36*/
+   fprintf(psFile, "%c", 'n'); /* 37*/
+   fprintf(psFile, "%c", '\0'); /* 0x42005E*/ /* 38*/
+   fprintf(psFile, "%c", '\0'); /*0x42005F*/
 
-   /*writing 42 null chars */
-   for (i = 0; i < 42; i++)
+   /* Instructions that are followed to get A Grade*/
+   instructions = MiniAssembler_adr(0, 0x420044, 0x420060); /*gets the address of grade */
+   fwrite(&instructions, sizeof(unsigned int), 1, psFile);
+
+   
+   instructions = MiniAssembler_mov(1, 0x41); /*moves 0x41(A) into x1*/
+   fwrite(&instructions, sizeof(unsigned int), 1, psFile);
+   
+   instructions = MiniAssembler_strb(1, 0);  /* stores A which is 1 byte into x0 register
+                                                which is grade*/
+   fwrite(&instructions, sizeof(unsigned int), 1, psFile);
+  
+   instructions = MiniAssembler_b(0x400864, 0x42006C);   /* Branch to printing Grade*/
+   fwrite(&instructions, sizeof(unsigned int), 1, psFile);
+
+   /* used 24 bytes out of 48 */
+   
+   /*writing 24 null chars */
+   for (i = 0; i < 24; i++)
       fprintf(psFile, "%c", '\0');
 
-   /*going to address 0x400858
+   /*going to address 0x420060
      added 10 additional hex values since 400858 is only 3 bytes
      so we need 5 more bytes = 10 digits of HEX
      0x0000000000400858 */
