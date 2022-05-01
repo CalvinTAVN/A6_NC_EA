@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-
+#include "miniassembler.h"
 
 /*Main function creates a file called dataA or overwrites
   dataA if it already exists. outputs a new file called 
