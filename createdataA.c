@@ -25,7 +25,7 @@ int main(void)
    unsigned long address;
 
    /*assigning values*/
-   psFile = fopen("dataB", "w");
+   psFile = fopen("dataA", "w");
    address = 0x0000000000400858;
    
    /*writing our name into the file */
