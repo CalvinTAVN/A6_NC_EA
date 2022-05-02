@@ -32,7 +32,7 @@ int main(void)
  
    /*writing our name into the file */
    /* Write total of 48 bytes*/
-   /*writes 7 bytes*/
+   /*writes 8 bytes*/
    fprintf(psFile, "%c", 'C'); /* offset 32*/
    fprintf(psFile, "%c", 'a'); /* 33  */
    fprintf(psFile, "%c", 'l'); /* 34*/
@@ -61,7 +61,7 @@ int main(void)
    
    /*writing 24 null chars */
    for (i = 0; i < 24; i++)
-      fprintf(psFile, "%c", '\0');
+      fprintf(psFile, "%c", '\n');
 
    /*going to address 0x420060
      added 10 additional hex values since 400858 is only 3 bytes

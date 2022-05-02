@@ -45,58 +45,65 @@ int main(void)
    
    /* Instructions that are followed to get A+ Grade*/
    /* Writing 20 bytes*/
-   instructions = MiniAssembler_adr(2, 0x420044, 0x420060); /*gets the address of grade */
+   /* 40 -43*/
+   instructions = MiniAssembler_adr(0, 0x420044, 0x420060); /*gets the address of grade */
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
 
-   
+
+   /* 44 - 47*/
    instructions = MiniAssembler_mov(1, 0x41); /*moves 0x41(A) into x1*/ /* 0x420064*/
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
 
    /* 0x420068*/
-   instructions = MiniAssembler_strb(1, 2);  /* stores A which is 1 byte into x0 register 
+   /* 48 - 51*/
+   instructions = MiniAssembler_strb(1, 0);  /* stores A which is 1 byte into x0 register 
                                                 which is grade*/
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
    
    /*0x42006C */
-   instructions = MiniAssembler_adr(0, 0x420071, 0x42006C);
+   /* 52 - 55*/
+   instructions = MiniAssembler_adr(0, 0x420074, 0x42006C);
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
-
-   /* 0x420070*/
-   instructions = MiniAssembler_b(0x40086c, 0x420070);   /* Branch to printing Grade*/
+   
+   /* 0x420070* - 0x420073/
+   /* 56 - 59*/
+   instructions = MiniAssembler_b(0x40086C, 0x420070);   /* Branch to printing Grade*/
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
 
    /* used 28 bytes out of 48 */
 
    /* Writing 20 bytes */
-   fprintf(psFile, "%c", '%'); /* 0x420071 */
+   
+   fprintf(psFile, "%c", '%'); /* 0x40074*/
    fprintf(psFile, "%c", 'c');
    fprintf(psFile, "%c", '+');
-   fprintf(psFile, "%c", ' '); /*4 */
-   fprintf(psFile, "%c", 'L'); /* i*/
+   fprintf(psFile, "%c", ' '); 
+   fprintf(psFile, "%c", 'i'); 
    fprintf(psFile, "%c", 's');
    fprintf(psFile, "%c", ' ');
-   fprintf(psFile, "%c", 'y');/* 4 */
+   fprintf(psFile, "%c", 'y');
    fprintf(psFile, "%c", 'o');
    fprintf(psFile, "%c", 'u');
    fprintf(psFile, "%c", 'r');
-   fprintf(psFile, "%c", ' '); /*4 */
+   fprintf(psFile, "%c", ' '); 
    fprintf(psFile, "%c", 'g');
    fprintf(psFile, "%c", 'r');
    fprintf(psFile, "%c", 'a');
-   fprintf(psFile, "%c", 'd'); /* 4*/
+   fprintf(psFile, "%c", 'd'); 
    fprintf(psFile, "%c", 'e');
    fprintf(psFile, "%c", '.');
-   fprintf(psFile, "%c", '\n');
-   fprintf(psFile, "%c", '\0'); /*4 */
+   fprintf(psFile, "%c", 'n');
+   /*putc(10, psFile);*/
+   fprintf(psFile, "%c", '\0'); 
    
    /* 20 bytes used*/
    /* all 48 bytes used*/
    
    /*writing 24 null chars */
-   /*
+/*   
    for (i = 0; i < 24; i++)
       fprintf(psFile, "%c", '\0');
-   */
+*/ 
    
    /*going to address 0x420060
      added 10 additional hex values since 400858 is only 3 bytes
